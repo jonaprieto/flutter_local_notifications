@@ -851,14 +851,14 @@ static FlutterError *getFlutterError(NSError *error) {
   if (presentSound && content.sound == nil) {
     content.sound = UNNotificationSound.defaultSound;
   }
-  NSMutableDictionary *userDict = [self buildUserDict:arguments[ID]
+  NSMutableDictionary *userDict = [[self buildUserDict:arguments[ID]
                                                 title:content.title
                                          presentAlert:presentAlert
                                          presentSound:presentSound
                                          presentBadge:presentBadge
                                         presentBanner:presentBanner
                                           presentList:presentList
-                                              payload:arguments[PAYLOAD]];
+                                              payload:arguments[PAYLOAD]] mutableCopy];
   if (arguments[PLATFORM_SPECIFICS] != [NSNull null]) {
     id dismissIsolate = arguments[PLATFORM_SPECIFICS][DISMISS_ISOLATE];
     if (dismissIsolate != nil && dismissIsolate != [NSNull null]) {
